@@ -9,7 +9,7 @@ namespace AppMatur2020
     [Activity(Label = "Home")]
     public class Home : Activity
     {
-        Conexao con2 = new Conexao();
+
         Button btSalva, btEditar, btExcluir;
         ListView list; 
 
@@ -19,9 +19,7 @@ namespace AppMatur2020
             base.OnCreate(savedInstanceState);
             
             //carrega butons
-            btSalva = FindViewById<Button>(Resource.Id.btnSalvar);
-            btEditar = FindViewById<Button>(Resource.Id.btnEditar);
-            btExcluir = FindViewById<Button>(Resource.Id.btnExcluir);
+
             list = FindViewById<ListView>(Resource.Id.listvHome);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Home);
@@ -32,6 +30,25 @@ namespace AppMatur2020
 
         private void Listar()
         {
+            Toast.MakeText(Application.Context, "Listar", ToastLength.Long).Show();
+            using (var conn = new MySqlConnection(Conexao.strConection))
+            {
+
+                string strq = "SELECT * FROM usuarios ";
+
+                MySqlCommand cmd = new MySqlCommand(strq, conn);
+                conn.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows) {
+                    while (reader.Read())
+                    {
+                        Toast.MakeText(Application.Context, "entrou", ToastLength.Long).Show();
+                    }
+                }
+
+                //int count = cmd.ToInt32(comandolr.ExecuteScalar());
+
+            }
             //MySqlCommand cmd;
             //MySqlDataReader reader;
             //ArrayAdapter<string> adapter;
@@ -44,9 +61,9 @@ namespace AppMatur2020
             //if (reader.HasRows) {
             //    while (reader.Read())
             //    {
-                    //listadeitens.Add(reader["Usuario"].ToString());
-                    //adapter = new ArrayAdapter<string>(this,Android.Resource.Layout.SimpleListItem1, listadeitens);
-                    //list.Adapter = adapter;
+            //listadeitens.Add(reader["Usuario"].ToString());
+            //adapter = new ArrayAdapter<string>(this,Android.Resource.Layout.SimpleListItem1, listadeitens);
+            //list.Adapter = adapter;
             //    }
             //}
             //con2.FechaCon();

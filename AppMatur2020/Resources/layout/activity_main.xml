@@ -14,7 +14,8 @@
         android:id="@+id/lblUsuario"
         android:textSize="15pt"
         android:layout_marginBottom="25px"
-        android:layout_marginLeft="5px" />
+        android:layout_marginLeft="5px"
+        android:textColor="#ff01579b" />
     <EditText
         android:inputType="textPersonName"
         android:layout_width="match_parent"
@@ -30,7 +31,8 @@
         android:id="@+id/lblSenha"
         android:textSize="15pt"
         android:layout_marginBottom="25px"
-        android:layout_marginLeft="5px" />
+        android:layout_marginLeft="5px"
+        android:textColor="#ff01579b" />
     <EditText
         android:inputType="textPassword"
         android:layout_width="match_parent"
@@ -46,5 +48,8 @@
         android:minHeight="25px"
         android:id="@+id/btnEntrar"
         android:layout_marginBottom="0.5dp"
-        android:textSize="60px" />
+        android:textSize="60px"
+        android:background="#ffffab00"
+        android:textColor="#ff01579b"
+        android:textStyle="bold" />
 </LinearLayout>

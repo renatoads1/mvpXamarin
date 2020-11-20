@@ -31,9 +31,7 @@ namespace AppMatur2020
             //delegate para o objeto os atributos
             btnLoginAc.Click += delegate
             {
-                con.AbreCon();
                 Login();
-                
             };
 
             //abre conexao com o banco
@@ -47,18 +45,21 @@ namespace AppMatur2020
         }
 
         public void Login() {
+
+            editTextUsuario.Text = "renatoads1";
+            editTextSenha.Text = "123456";
             if ((!String.IsNullOrEmpty(editTextUsuario.Text)) || (!String.IsNullOrEmpty(editTextSenha.Text)))
             {
-                MySqlCommand cmd;
-                MySqlDataReader reader;
-                string strQuery = "SELECT Id,Usuario,Senha,cnpj,NomeEmpresa FROM usuarios WHERE Usuario = @usuario and Senha = @senha ";
-
-                using (cmd = new MySqlCommand(strQuery, con.con))
+                using (var conn = new MySqlConnection(Conexao.strConection))
                 {
-                    
+
+                    string strq = "SELECT Id,Usuario,Senha,cnpj,NomeEmpresa FROM usuarios WHERE Usuario = @usuario and Senha = @senha ";
+
+                    MySqlCommand cmd = new MySqlCommand(strq, conn);
                     cmd.Parameters.Add("@usuario", editTextUsuario.Text);
                     cmd.Parameters.Add("@senha", editTextSenha.Text);
-                    reader = cmd.ExecuteReader();
+                    conn.Open();
+                    MySqlDataReader reader = cmd.ExecuteReader();
                     if (reader.HasRows)
                     {
                         while (reader.Read())
@@ -70,28 +71,16 @@ namespace AppMatur2020
                             Conexao.NomeEmpresa = reader["NomeEmpresa"].ToString();
                             StartActivity(typeof(Home));
                         }
-
-                        Toast.MakeText(Application.Context, $"Bem Vindo !!! {Conexao.Usuario} da empresa \n  {Conexao.NomeEmpresa}", ToastLength.Long).Show();
-                        con.FechaCon();
                     }
-                    else
-                    {
-                        Toast.MakeText(Application.Context, "Usuário e ou Senha Invalido!!", ToastLength.Long).Show();
-                        con.FechaCon();
-                    }
+                    else {
+                        Toast.MakeText(Application.Context, "Usuário e ou Senha Inválido", ToastLength.Long).Show();
+                    }//int count = cmd.ToInt32(comandolr.ExecuteScalar());
                 }
-
-               
-
-                
-
-
             }
             else {
                 Toast.MakeText(Application.Context, "Preencha os campos Usuário ou Senha", ToastLength.Long).Show();
-                con.FechaCon();
             }
-            con.FechaCon();
+          
         }
 
     }

@@ -258,4 +258,3 @@ C:\Users\renatolacerda\source\repos\AppMatur2020\AppMatur2020\obj\Debug\90\stamp
 C:\Users\renatolacerda\source\repos\AppMatur2020\AppMatur2020\obj\Debug\90\stamp\_ResolveLibraryProjectImports.stamp
 C:\Users\renatolacerda\source\repos\AppMatur2020\AppMatur2020\obj\Debug\90\res\layout\home.xml
 C:\Users\renatolacerda\source\repos\AppMatur2020\AppMatur2020\obj\Debug\90\android\src\crc64290b0a459bbd7988\Home.java
-C:\Users\renatolacerda\source\repos\AppMatur2020\AppMatur2020\obj\Debug\90\AppMatur2020.csprojAssemblyReference.cache
